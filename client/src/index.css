@@ -63,3 +63,40 @@ body {
   outline: 2px solid var(--trace);
   outline-offset: 2px;
 }
+
+/*
+ * Build diagram: a part slides into its slot when it is picked. The class says where it comes
+ * from. Nothing moves for people who ask their system for reduced motion.
+ */
+@keyframes seat-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--seat-x, 0), var(--seat-y, 0));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.seat {
+  animation: seat-in 480ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.seat-from-left {
+  --seat-x: -28px;
+}
+.seat-from-right {
+  --seat-x: 28px;
+}
+.seat-from-top {
+  --seat-y: -24px;
+}
+.seat-from-bottom {
+  --seat-y: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seat {
+    animation: none;
+  }
+}

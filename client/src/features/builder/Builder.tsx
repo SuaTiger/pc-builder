@@ -2,7 +2,9 @@ import type { PartCategory, SavedBuildDetail } from '@pc-builder/shared';
 import { useState } from 'react';
 import { Button } from '../../components/Button';
 import { isEmptyBuild } from './build-state';
+import { BuildDiagram } from './BuildDiagram';
 import { BuildSummary } from './BuildSummary';
+import { FpsPanel } from './FpsPanel';
 import { PartPicker } from './PartPicker';
 import { SaveBuildForm } from './SaveBuildForm';
 import { SlotRail } from './SlotRail';
@@ -26,6 +28,9 @@ export function Builder({ saved }: { saved?: SavedBuildDetail }) {
           onActivate={setCategory}
           onRemove={builder.remove}
         />
+        <div className="mt-6">
+          <BuildDiagram build={builder.build} report={builder.report} />
+        </div>
         {!isEmptyBuild(builder.build) && (
           <Button variant="ghost" className="mt-3" onClick={builder.reset}>
             Start over
@@ -46,6 +51,7 @@ export function Builder({ saved }: { saved?: SavedBuildDetail }) {
           totalPriceThb={builder.totalPriceThb}
           estimatedWatts={builder.estimatedWatts}
         />
+        <FpsPanel build={builder.build} />
         <SaveBuildForm build={builder.build} savedId={saved?.id} initialName={saved?.name} />
       </aside>
     </div>

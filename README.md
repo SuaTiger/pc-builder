@@ -4,6 +4,9 @@ A web app for choosing PC parts where every part has to actually fit together. P
 motherboard list shows only boards with the same socket; pick a graphics card and the app checks
 case clearance and power supply wattage. Log in to save builds and open them later.
 
+**Live demo:** https://pc-builder-web-q9fi.onrender.com (the API on the free tier sleeps when idle,
+so the first load can take about a minute).
+
 Built phase by phase as a learning project; the reasoning behind each choice is written down in
 [docs/decisions.md](docs/decisions.md).
 
