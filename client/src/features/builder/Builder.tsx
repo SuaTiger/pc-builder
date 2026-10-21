@@ -21,6 +21,9 @@ export function Builder({ saved }: { saved?: SavedBuildDetail }) {
   return (
     <div className="grid gap-8 lg:grid-cols-[17rem_minmax(0,1fr)_20rem]">
       <div>
+        <div className="mb-4">
+          <BuildDiagram build={builder.build} report={builder.report} />
+        </div>
         <SlotRail
           build={builder.build}
           report={builder.report}
@@ -28,9 +31,6 @@ export function Builder({ saved }: { saved?: SavedBuildDetail }) {
           onActivate={setCategory}
           onRemove={builder.remove}
         />
-        <div className="mt-6">
-          <BuildDiagram build={builder.build} report={builder.report} />
-        </div>
         {!isEmptyBuild(builder.build) && (
           <Button variant="ghost" className="mt-3" onClick={builder.reset}>
             Start over
