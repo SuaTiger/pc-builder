@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+/*
+ * Colour tokens. The page is a board-green neutral with one accent ("trace") that always means
+ * "connected / fits", plus red and amber used only for problems. Dark mode follows the system.
+ */
+:root {
+  color-scheme: light dark;
+  --paper: #eef2ef;
+  --surface: #ffffff;
+  --ink: #14201b;
+  --muted: #55655e;
+  --line: #d3dcd7;
+  --trace: #0b7a62;
+  --trace-ink: #ffffff;
+  --fault: #b42f2f;
+  --caution: #9a6209;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0d1411;
+    --surface: #141d19;
+    --ink: #e4ece8;
+    --muted: #93a59d;
+    --line: #26332d;
+    --trace: #3fc4a1;
+    --trace-ink: #0d1411;
+    --fault: #f08a8a;
+    --caution: #e2b657;
+  }
+}
+
+/* `inline` makes Tailwind read the variables above directly, so the dark values apply. */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-trace: var(--trace);
+  --color-trace-ink: var(--trace-ink);
+  --color-fault: var(--fault);
+  --color-caution: var(--caution);
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The wide cut of Archivo, used for the logotype and page titles. */
+.title-wide {
+  font-stretch: 115%;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--trace);
+  outline-offset: 2px;
+}

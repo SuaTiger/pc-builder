@@ -1,0 +1,43 @@
+# Render Blueprint: describes both halves of the app so they can be created together.
+# Secrets are marked `sync: false`: Render asks for them in its dashboard and they never enter git.
+# Steps are in docs/deploy.md.
+services:
+  # The API (Express). Free web services sleep after ~15 minutes without traffic.
+  - type: web
+    name: pc-builder-api
+    runtime: node
+    plan: free
+    # --include=dev because the build needs tsup and TypeScript, which are devDependencies.
+    buildCommand: npm install --include=dev && npm run build -w server
+    startCommand: npm run start -w server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_ORIGIN # the address of the web app below, without a trailing slash
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+
+  # The web app (React). Static files, so it never sleeps.
+  - type: web
+    name: pc-builder-web
+    runtime: static
+    buildCommand: npm install --include=dev && npm run build -w client
+    staticPublishPath: client/dist
+    routes:
+      # Serve index.html for every path so reloading /builds or /admin does not give a 404.
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL # the address of the API above, without a trailing slash
+        sync: false
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false

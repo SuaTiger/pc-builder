@@ -1,0 +1,25 @@
+{
+  "name": "pc-builder",
+  "private": true,
+  "description": "PC building web app with real part-compatibility checks",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w server && npm run build -w client",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2"
+  }
+}
