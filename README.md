@@ -91,3 +91,7 @@ Other commands: `npm test`, `npm run typecheck`, `npm run build`, `npm run forma
 - [x] Deployment configuration (`render.yaml`)
 - [x] Build diagram: each part slides into place
 - [x] FPS estimate for a chosen game and graphics card (approximate benchmark table)
+
+## License
+
+MIT, see [LICENSE](LICENSE).
