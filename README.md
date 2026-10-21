@@ -87,5 +87,5 @@ Other commands: `npm test`, `npm run typecheck`, `npm run build`, `npm run forma
 - [x] Login, roles, saved builds, admin endpoints
 - [x] Part picker UI: slot rail, fitting parts first, saved builds, admin page
 - [x] Deployment configuration (`render.yaml`)
-- [ ] Build animation: each part sliding into place
-- [ ] FPS estimation for a chosen game and graphics card
+- [x] Build diagram: each part slides into place
+- [x] FPS estimate for a chosen game and graphics card (approximate benchmark table)
