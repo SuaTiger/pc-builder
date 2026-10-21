@@ -7,6 +7,8 @@ case clearance and power supply wattage. Log in to save builds and open them lat
 **Live demo:** https://pc-builder-web-q9fi.onrender.com (the API on the free tier sleeps when idle,
 so the first load can take about a minute).
 
+![A complete build: case diagram, parts list, price, power use and estimated frame rate](docs/screenshot.jpg)
+
 Built phase by phase as a learning project; the reasoning behind each choice is written down in
 [docs/decisions.md](docs/decisions.md).
 
